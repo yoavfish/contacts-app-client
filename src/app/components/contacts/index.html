@@ -1,0 +1,21 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Avatar</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="contact in contacts">
+            <td><img class="rounded" ng-src="{{contact.picture.thumbnail}}"></td>
+            <td>{{contact.name.first}}</td>
+            <td>{{contact.name.last}}</td>
+            <td>{{contact.phone}}</td>
+          </tr>
+        </tbody>
+      </table>
+    <a ui-sref="another">going to another</a>
+</div>
