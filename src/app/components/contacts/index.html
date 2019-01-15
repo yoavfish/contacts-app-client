@@ -6,6 +6,8 @@
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -14,8 +16,12 @@
             <td>{{contact.name.first}}</td>
             <td>{{contact.name.last}}</td>
             <td>{{contact.phone}}</td>
+            <td>{{contact.location.street}}</td>
+            <td>
+              <button class="btn-sm btn-danger">x</button>
+            </td>
           </tr>
         </tbody>
       </table>
-    <a ui-sref="another">going to another</a>
+    <a ui-sref="another">Add Contact</a>
 </div>
