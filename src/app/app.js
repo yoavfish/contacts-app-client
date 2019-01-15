@@ -1,25 +1,25 @@
 import angular from 'angular';
-
+import uiRouter from 'angular-ui-router'
 import '../style/app.css';
-
-let app = () => {
-  return {
-    template: require('./app.html'),
-    controller: 'AppCtrl',
-    controllerAs: 'app'
-  }
-};
-
-class AppCtrl {
-  constructor() {
-    this.url = 'https://github.com/preboot/angular-webpack';
-  }
-}
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [])
-  .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
+const app = angular.module(MODULE_NAME, [uiRouter]);
+  
+app.config(($locationProvider, $urlRouterProvider, $stateProvider ) => {
+    // $urlRouterProvider.other('/');
+
+    $stateProvider
+      .state('contacts', {
+          url: '/',
+          template: require('../contacts/index.html')
+      })
+      .state('another',{
+        url: '/another',
+        template: require('../another/index.html')
+      })
+
+      $locationProvider.html5Mode(true)
+  })
 
 export default MODULE_NAME;
