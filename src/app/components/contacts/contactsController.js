@@ -2,6 +2,7 @@ export default ($scope, _contacts, dataService) => {
   $scope.contacts = _contacts; 
   $scope.showAddContactRow = false;
   $scope.newContact = null;
+  $scope.searchText = null;
   $scope.contactModel = {
     name: {first: null, last: null},
     location: {street: null},
@@ -10,7 +11,7 @@ export default ($scope, _contacts, dataService) => {
   }
 
   $scope.deleteContact = (contactId) => {
-    console.log(dataService.deleteContact(contactId))
+    dataService.deleteContact(contactId)
   }
   
   $scope.saveContact = () => {
@@ -33,5 +34,17 @@ export default ($scope, _contacts, dataService) => {
   }
 
   $scope.resetNewContact = () => $scope.newContact = angular.copy($scope.contactModel)
+
+  $scope.search = () => {
+    dataService.getContactsWithSearch($scope.searchText)
+    .then(
+      data => {
+        $scope.contacts = data
+        $scope.searchText = null;
+      },
+        error => {
+        console.error('Error getting contacts', error)
+      })
+  }
 
 }
