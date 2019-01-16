@@ -11,17 +11,36 @@
           </tr>
         </thead>
         <tbody>
+          <tr ng-if="showAddContactRow"> 
+              <td></td>
+              <td>
+                <input type="text" name="firstName" ng-model="newContact.name.first"> 
+              </td>
+              <td>
+                <input type="text" name="lastName" ng-model="newContact.name.last"> 
+              </td>
+              <td>
+                <input type="tel" name="cell" ng-model="newContact.cell"> 
+              </td>
+              <td>
+                <input type="text" name="street" ng-model="newContact.location.street"> 
+              </td>
+              <td>
+                <button class="btn-sm btn-success" ng-click="saveContact()">save</button>
+                <button class="btn-sm btn-danger" ng-click="setShowAddContactRow(false)">x</button>
+              </td>
+          </tr>
           <tr ng-repeat="contact in contacts">
-            <td><img class="rounded" ng-src="{{contact.picture.thumbnail}}"></td>
-            <td>{{contact.name.first}}</td>
-            <td>{{contact.name.last}}</td>
-            <td>{{contact.phone}}</td>
-            <td>{{contact.location.street}}</td>
+            <td><img class="rounded" ng-src="{{contact.picture[0].thumbnail}}"></td>
+            <td>{{contact.name[0].first}}</td>
+            <td>{{contact.name[0].last}}</td>
+            <td>{{contact.cell}}</td>
+            <td>{{contact.location[0].street}}</td>
             <td>
-              <button class="btn-sm btn-danger">x</button>
+              <button class="btn-sm btn-danger" ng-click="deleteContact(contact._id)">x</button>
             </td>
           </tr>
         </tbody>
       </table>
-    <a ui-sref="another">Add Contact</a>
+    <button class="btn btn-success" ng-click="setShowAddContactRow(true)"> + Add Contact</button>
 </div>

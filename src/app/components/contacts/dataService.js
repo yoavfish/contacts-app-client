@@ -4,7 +4,22 @@ export default function DataService($http) {
       return response.data;
     });
   }
+  
+  function deleteContact(contactId) {
+    return $http.delete(`api/contacts/${contactId}`).then(response => {
+      return response.data;
+    });
+  }
+  
+  function saveContact(contact) {
+    return $http.post('api/contacts', contact).then(response => {
+      return response.data;
+    });
+  }
+
   return {
-    getContacts
+    getContacts,
+    saveContact,
+    deleteContact
   };
 }
