@@ -5,8 +5,8 @@ export default function DataService($http) {
     });
   }
 
-  function getContactsWithSearch(searchText, page) {
-    return $http.get(`api/contacts?searchText=${searchText}&page=${page}`).then(response => {
+  function getContactsWithSearch(searchText = '', page = 0, sort = {sortType: '', sortDirection: ''}) {
+    return $http.get(`api/contacts?searchText=${searchText}&page=${page}&sortType=${sort.sortType}&sortDirection=${sort.sortDirection}`).then(response => {
       return response.data;
     });
   }

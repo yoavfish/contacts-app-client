@@ -8,6 +8,10 @@ export default ($scope, _contacts, dataService) => {
   $scope.pagination = []
   $scope.contacts = _contacts.docs; 
   $scope.updatePagination(_contacts)
+  $scope.sort = {
+    sortType: 'name.first',
+    sortDirection: 1
+  }
   $scope.showAddContactRow = false;
   $scope.newContact = null;
   $scope.searchText = '';
@@ -43,8 +47,11 @@ export default ($scope, _contacts, dataService) => {
 
   $scope.resetNewContact = () => $scope.newContact = angular.copy($scope.contactModel)
 
-  $scope.search = (page = 0) => {
-    dataService.getContactsWithSearch($scope.searchText, page)
+  $scope.search = (page = 0, sortType = '', sortDirection = '') => {
+    $scope.sort.sortType = sortType
+    $scope.sort.sortDirection = sortDirection
+
+    dataService.getContactsWithSearch($scope.searchText, page, $scope.sort)
     .then(
       data => {
         $scope.contacts = data.docs

@@ -5,10 +5,34 @@
         <thead>
           <tr>
             <th scope="col">Avatar</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
+            <th scope="col">
+              <div class="header">
+                <span>First</span> 
+                <i class="fas fa-arrow-down" ng-click="search(pagination.currentPage, 'name.first', 1)"></i>
+                <i class="fas fa-arrow-up" ng-click="search(pagination.currentPage, 'name.first', -1)"></i>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="header">
+                <span>Last</span> 
+                <i class="fas fa-arrow-down" ng-click="search(pagination.currentPage, 'name.last', 1)"></i>
+                <i class="fas fa-arrow-up" ng-click="search(pagination.currentPage, 'name.last', -1)"></i>
+              </div>
+              </th>
+            <th scope="col">
+              <div class="header">
+                <span>Phone</span> 
+                <i class="fas fa-arrow-down" ng-click="search(pagination.currentPage, 'cell', 1)"></i>
+                <i class="fas fa-arrow-up" ng-click="search(pagination.currentPage, 'cell', -1)"></i>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="header">
+                <span>Address</span> 
+                <i class="fas fa-arrow-down" ng-click="search(pagination.currentPage, 'location.street', 1)"></i>
+                <i class="fas fa-arrow-up" ng-click="search(pagination.currentPage, 'location.street', -1)"></i>
+              </div>
+            </th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -47,7 +71,7 @@
       <nav aria-label="Pagination">
           <ul class="pagination">
             <li class="page-item" ng-repeat="page in [].constructor(pagination.pages) track by $index"
-                                  ng-click="search($index)"
+                                  ng-click="search($index, sort.sortType, sort.sortDirection)"
                                   ng-class="{active: $index === pagination.currentPage}">
               <a class="page-link">{{$index + 1}}</a>
             </li>

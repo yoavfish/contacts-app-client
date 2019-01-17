@@ -6,6 +6,16 @@ body {
 a {
 }
 
+div.header{
+  display: flex;
+  align-items: center;
+}
+
+i.fas.fa-arrow-down,
+i.fas.fa-arrow-up {
+  margin-left: 4px;
+}
+
 main {
   padding: 1em;
   font-family: Arial, Helvetica, sans-serif;
