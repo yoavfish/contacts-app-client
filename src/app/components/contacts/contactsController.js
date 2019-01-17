@@ -1,8 +1,16 @@
 export default ($scope, _contacts, dataService) => {
-  $scope.contacts = _contacts; 
+  $scope.updatePagination = (data) => {
+    $scope.pagination = {
+      pages: Math.ceil(data.total / data.limit),
+      currentPage: Math.ceil( data.offset / data.limit) 
+    }
+  }
+  $scope.pagination = []
+  $scope.contacts = _contacts.docs; 
+  $scope.updatePagination(_contacts)
   $scope.showAddContactRow = false;
   $scope.newContact = null;
-  $scope.searchText = null;
+  $scope.searchText = '';
   $scope.contactModel = {
     name: {first: null, last: null},
     location: {street: null},
@@ -35,16 +43,15 @@ export default ($scope, _contacts, dataService) => {
 
   $scope.resetNewContact = () => $scope.newContact = angular.copy($scope.contactModel)
 
-  $scope.search = () => {
-    dataService.getContactsWithSearch($scope.searchText)
+  $scope.search = (page = 0) => {
+    dataService.getContactsWithSearch($scope.searchText, page)
     .then(
       data => {
-        $scope.contacts = data
-        $scope.searchText = null;
+        $scope.contacts = data.docs
+        $scope.updatePagination(data)
       },
         error => {
         console.error('Error getting contacts', error)
       })
   }
-
 }

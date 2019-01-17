@@ -44,5 +44,14 @@
           </tr>
         </tbody>
       </table>
+      <nav aria-label="Pagination">
+          <ul class="pagination">
+            <li class="page-item" ng-repeat="page in [].constructor(pagination.pages) track by $index"
+                                  ng-click="search($index)"
+                                  ng-class="{active: $index === pagination.currentPage}">
+              <a class="page-link">{{$index + 1}}</a>
+            </li>
+          </ul>
+      </nav>
     <button class="btn btn-success" ng-click="setShowAddContactRow(true)"> + Add Contact</button>
 </div>
