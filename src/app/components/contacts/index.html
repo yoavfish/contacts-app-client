@@ -62,12 +62,27 @@
           </tr>
           <tr ng-repeat="contact in contacts">
             <td><img class="rounded" ng-src="{{contact.picture[0].thumbnail}}"></td>
-            <td>{{contact.name[0].first}}</td>
-            <td>{{contact.name[0].last}}</td>
-            <td>{{contact.cell}}</td>
-            <td>{{contact.location[0].street}}</td>
             <td>
-              <button class="btn-sm btn-danger" ng-click="deleteContact(contact._id)"><i class="fas fa-trash"></i></button>
+              <span ng-if="!showEditRow(contact._id)">{{contact.name[0].first}}</span>
+              <input ng-if="showEditRow(contact._id)" class="form-control" type="text" name="firstName" ng-model="contact.name[0].first"> 
+            </td>
+            <td>
+              <span ng-if="!showEditRow(contact._id)">{{contact.name[0].last}}</span>
+              <input ng-if="showEditRow(contact._id)" class="form-control" type="text" name="lastName" ng-model="contact.name[0].last"> 
+            </td>
+            <td>
+              <span ng-if="!showEditRow(contact._id)">{{contact.cell}}</span>
+              <input ng-if="showEditRow(contact._id)" class="form-control" type="text" name="cell" ng-model="contact.cell"> 
+            </td>
+            <td>
+              <span ng-if="!showEditRow(contact._id)">{{contact.location[0].street}}</span>
+              <input ng-if="showEditRow(contact._id)" class="form-control" type="text" name="cell" ng-model="contact.location[0].street"> 
+            </td>
+            <td>
+              <button ng-if="!showEditRow(contact._id)" class="btn-sm btn-danger" ng-click="deleteContact(contact._id)"><i class="fas fa-trash"></i></button>
+              <button ng-if="!showEditRow(contact._id)" class="btn-sm btn-default" ng-click="setEditContactId(contact._id)"><i class="fas fa-user-edit"></i></button>
+              <button ng-if="showEditRow(contact._id)" class="btn-sm btn-success first" ng-click="updateContact(contact)"><i class="far fa-save"></i></button>
+              <button ng-if="showEditRow(contact._id)" class="btn-sm btn-danger" ng-click="setEditContactId(null)"><i class="fas fa-ban"></i></button>
             </td>
           </tr>
         </tbody>

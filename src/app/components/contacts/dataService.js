@@ -22,11 +22,18 @@ export default function DataService($http) {
       return response.data;
     });
   }
+  
+  function updateContact(contact) {
+    return $http.put(`api/contacts/${contact._id}`, contact).then(response => {
+      return response.data;
+    });
+  }
 
   return {
     getContacts,
-    saveContact,
+    getContactsWithSearch,
     deleteContact,
-    getContactsWithSearch
+    saveContact,
+    updateContact,
   };
 }
