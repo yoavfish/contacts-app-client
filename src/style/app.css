@@ -1,11 +1,40 @@
 /* styles in src/style directory are applied to the whole page */
 @import "~bootstrap/dist/css/bootstrap.css";
 body {
+  padding: 10px;
 }
 
-a {
+.table thead th {
+  border-top: none;
 }
 
+.app-container {
+  display: flex;
+  justify-content: center;
+}
+
+button.btn-add-contact {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.pagination-nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group {
+  margin: 20px 0;
+}
+.btn-group > button.first {
+  margin-right: 4px;
+}
+
+div.search-wrap {
+  display: flex;
+  padding: 10px 0;
+}
 div.header{
   display: flex;
   align-items: center;

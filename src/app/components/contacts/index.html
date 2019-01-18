@@ -1,6 +1,8 @@
-<div class="container">
-    <button class="btn btn-success" ng-click="search()"> search</button>
-    <input type="text" name="searchText" ng-model="searchText" /> 
+<div>
+    <div class="input-group">
+      <input type="text" class="form-control search" name="searchText" ng-model="searchText" ng-model-options="{ debounce: 500 }" ng-change="search()" /> 
+      <button class="btn btn-primary btn-add-contact" ng-click="setShowAddContactRow(true)"> <i class="fas fa-user-plus"></i></button>
+    </div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -40,20 +42,22 @@
           <tr ng-if="showAddContactRow"> 
               <td></td>
               <td>
-                <input type="text" name="firstName" ng-model="newContact.name.first"> 
+                <input class="form-control" type="text" name="firstName" ng-model="newContact.name.first"> 
               </td>
               <td>
-                <input type="text" name="lastName" ng-model="newContact.name.last"> 
+                <input class="form-control" type="text" name="lastName" ng-model="newContact.name.last"> 
               </td>
               <td>
-                <input type="tel" name="cell" ng-model="newContact.cell"> 
+                <input class="form-control" type="tel" name="cell" ng-model="newContact.cell"> 
               </td>
               <td>
-                <input type="text" name="street" ng-model="newContact.location.street"> 
+                <input class="form-control" type="text" name="street" ng-model="newContact.location.street"> 
               </td>
               <td>
-                <button class="btn-sm btn-success" ng-click="saveContact()">save</button>
-                <button class="btn-sm btn-danger" ng-click="setShowAddContactRow(false)">x</button>
+                <div class="btn-group">
+                  <button class="btn-sm btn-success first" ng-click="saveContact()"><i class="far fa-save"></i></button>
+                  <button class="btn-sm btn-danger" ng-click="setShowAddContactRow(false)"><i class="fas fa-ban"></i></button>
+                </div>
               </td>
           </tr>
           <tr ng-repeat="contact in contacts">
@@ -63,12 +67,12 @@
             <td>{{contact.cell}}</td>
             <td>{{contact.location[0].street}}</td>
             <td>
-              <button class="btn-sm btn-danger" ng-click="deleteContact(contact._id)">x</button>
+              <button class="btn-sm btn-danger" ng-click="deleteContact(contact._id)"><i class="fas fa-trash"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
-      <nav aria-label="Pagination">
+      <nav aria-label="Pagination" class="pagination-nav">
           <ul class="pagination">
             <li class="page-item" ng-repeat="page in [].constructor(pagination.pages) track by $index"
                                   ng-click="search($index, sort.sortType, sort.sortDirection)"
@@ -77,5 +81,4 @@
             </li>
           </ul>
       </nav>
-    <button class="btn btn-success" ng-click="setShowAddContactRow(true)"> + Add Contact</button>
 </div>
