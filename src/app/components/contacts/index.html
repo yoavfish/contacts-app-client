@@ -3,7 +3,7 @@
       <input type="text" class="form-control search" name="searchText" ng-model="searchText" ng-model-options="{ debounce: 500 }" ng-change="search()" /> 
       <button class="btn btn-primary btn-add-contact" ng-click="setShowAddContactRow(true)"> <i class="fas fa-user-plus"></i></button>
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped contacts-table">
         <thead>
           <tr>
             <th scope="col">Avatar</th>
@@ -79,10 +79,14 @@
               <input ng-if="showEditRow(contact._id)" class="form-control" type="text" name="cell" ng-model="contact.location[0].street"> 
             </td>
             <td>
-              <button ng-if="!showEditRow(contact._id)" class="btn-sm btn-danger" ng-click="deleteContact(contact._id)"><i class="fas fa-trash"></i></button>
-              <button ng-if="!showEditRow(contact._id)" class="btn-sm btn-default" ng-click="setEditContactId(contact._id)"><i class="fas fa-user-edit"></i></button>
-              <button ng-if="showEditRow(contact._id)" class="btn-sm btn-success first" ng-click="updateContact(contact)"><i class="far fa-save"></i></button>
-              <button ng-if="showEditRow(contact._id)" class="btn-sm btn-danger" ng-click="setEditContactId(null)"><i class="fas fa-ban"></i></button>
+              <div ng-if="!showEditRow(contact._id)" class="btn-group">
+                <button class="btn-sm btn-danger first" ng-click="deleteContact(contact._id)"><i class="fas fa-trash"></i></button>
+                <button class="btn-sm btn-default" ng-click="setEditContactId(contact._id)"><i class="fas fa-user-edit"></i></button>
+              </div>
+              <div ng-if="showEditRow(contact._id)" class="btn-group">
+                <button class="btn-sm btn-success first" ng-click="updateContact(contact)"><i class="far fa-save"></i></button>
+                <button class="btn-sm btn-danger" ng-click="setEditContactId(null)"><i class="fas fa-ban"></i></button>
+              </div>
             </td>
           </tr>
         </tbody>

@@ -8,6 +8,10 @@ body {
   border-top: none;
 }
 
+.contacts-table tbody tr td span{
+  text-transform: capitalize;
+}
+
 .app-container {
   display: flex;
   justify-content: center;
