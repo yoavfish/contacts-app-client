@@ -1,17 +1,19 @@
 export default ($scope, _contacts, dataService) => {
+
   $scope.updatePagination = (data) => {
     $scope.pagination = {
       pages: Math.ceil(data.total / data.limit),
       currentPage: Math.ceil( data.offset / data.limit) 
     }
   }
-  $scope.pagination = []
-  $scope.contacts = _contacts.docs
   $scope.updatePagination(_contacts)
   $scope.sort = {
     sortType: 'name.first',
     sortDirection: 1
   }
+
+  $scope.pagination = []
+  $scope.contacts = _contacts.docs
   $scope.showAddContactRow = false
   $scope.newContact = null
   $scope.searchText = ''
@@ -23,6 +25,18 @@ export default ($scope, _contacts, dataService) => {
     picture: null,
   }
 
+  $scope.saveContact = () => {
+    dataService.saveContact($scope.newContact)
+    .then(
+      data => {
+      const newContact = angular.copy(data)
+      $scope.contacts.push(newContact)
+      $scope.resetNewContact()
+    },
+      error => console.error('Error saving new contact', error)
+    )
+  }
+  
   $scope.deleteContact = (contactId) => {
     dataService.deleteContact(contactId)
     .then(
@@ -39,19 +53,6 @@ export default ($scope, _contacts, dataService) => {
         $scope.setEditContactId(null)
       },
       error => console.error(`Error updating contact (id: ${contactId})`, error)
-    )
-  }
-  
-  $scope.saveContact = () => {
-
-    dataService.saveContact($scope.newContact)
-    .then(
-      data => {
-      const newContact = angular.copy(data)
-      $scope.contacts.push(newContact)
-      $scope.resetNewContact()
-    },
-      error => console.error('Error saving new contact', error)
     )
   }
   

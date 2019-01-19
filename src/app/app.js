@@ -8,8 +8,7 @@ const MODULE_NAME = 'app';
 
 const app = angular.module(MODULE_NAME, [uiRouter]);
 app.factory('dataService', dataService)
-app.config(($locationProvider, $urlRouterProvider, $stateProvider ) => {
-    // $urlRouterProvider.other('/');
+app.config(($locationProvider, $stateProvider ) => {
 
     $stateProvider
       .state('contacts', {
@@ -21,10 +20,6 @@ app.config(($locationProvider, $urlRouterProvider, $stateProvider ) => {
                 return dataService.getContacts();
             }
           }
-      })
-      .state('another',{
-        url: '/another',
-        template: require('./components/another/index.html')
       })
 
       $locationProvider.html5Mode(true)
