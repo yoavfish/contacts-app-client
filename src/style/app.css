@@ -8,6 +8,11 @@ body {
   border-top: none;
 }
 
+.contacts-table tbody tr td {
+  vertical-align: baseline;
+  border: none;
+}
+
 .contacts-table tbody tr td span{
   text-transform: capitalize;
 }
@@ -15,6 +20,20 @@ body {
 .app-container {
   display: flex;
   justify-content: center;
+}
+
+.contact-avatar {
+    width: 48px;
+    height: 48px;
+    background-color: cadetblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    font-size: 24px;
+    letter-spacing: -2px;
+    color: darkblue;
+    border-radius: 0.25rem;
 }
 
 button.btn-add-contact {

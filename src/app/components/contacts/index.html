@@ -61,7 +61,13 @@
               </td>
           </tr>
           <tr ng-repeat="contact in contacts">
-            <td><img class="rounded" ng-src="{{contact.picture[0].thumbnail}}"></td>
+            <td>
+              <img ng-if="contact.picture[0].thumbnail" class="rounded" ng-src="{{contact.picture[0].thumbnail}}">
+              <div ng-if="!contact.picture[0].thumbnail" class="contact-avatar">
+                  {{ contact.name[0].first | limitTo:1 }}
+                  {{ contact.name[0].last | limitTo:1 }}
+              </div> 
+            </td>
             <td>
               <span ng-if="!showEditRow(contact._id)">{{contact.name[0].first}}</span>
               <input ng-if="showEditRow(contact._id)" class="form-control" type="text" name="firstName" ng-model="contact.name[0].first"> 
