@@ -32,7 +32,7 @@ export default ($scope, _contacts, dataService) => {
 
   $scope.setEditContactId = (contactId) => {
     $scope.editContactId = contactId
-    if(!$scope.editContactId) $scope.search($scope.pagination.currentPage)
+    if(!$scope.editContactId) $scope.search($scope.pagination.currentPage, $scope.sort.sortType, $scope.sort.sortDirection)
   }
 
   $scope.showEditRow = (contactId) => $scope.editContactId === contactId
@@ -43,7 +43,7 @@ export default ($scope, _contacts, dataService) => {
     dataService.saveContact($scope.newContact)
     .then(
       () => {
-      $scope.search($scope.pagination.currentPage)
+      $scope.search($scope.pagination.currentPage, $scope.sort.sortType, $scope.sort.sortDirection)
       $scope.resetNewContact()
     },
       error => console.error('Error saving new contact', error)
@@ -53,7 +53,7 @@ export default ($scope, _contacts, dataService) => {
   $scope.deleteContact = (contactId) => {
     dataService.deleteContact(contactId)
     .then(
-      () => $scope.search($scope.pagination.currentPage),
+      () => $scope.search($scope.pagination.currentPage, $scope.sort.sortType, $scope.sort.sortDirection),
       error => console.error(`Error deleting contact (id: ${contactId})`, error)
     )
   }
@@ -62,7 +62,7 @@ export default ($scope, _contacts, dataService) => {
     dataService.updateContact(contact)
     .then(
       () => {
-        $scope.search($scope.pagination.currentPage)
+        $scope.search($scope.pagination.currentPage, $scope.sort.sortType, $scope.sort.sortDirection)
         $scope.setEditContactId(null)
       },
       error => console.error(`Error updating contact (id: ${contactId})`, error)
