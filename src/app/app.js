@@ -5,8 +5,8 @@ import dataService from './components/contacts/dataService'
 import '../style/app.css';
 
 const MODULE_NAME = 'app';
-
 const app = angular.module(MODULE_NAME, [uiRouter]);
+
 app.factory('dataService', dataService)
 app.config(($locationProvider, $stateProvider ) => {
 
